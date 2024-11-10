@@ -135,3 +135,18 @@ input:focus {
     width: calc(20% - 2rem);
   }
 }
+.in-stock {
+  background-color: green; /* Green for in-stock items */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.sold-out {
+  background-color: gray; /* Gray for out-of-stock items */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}

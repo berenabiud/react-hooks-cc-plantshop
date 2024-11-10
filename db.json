@@ -41,6 +41,12 @@
       "name": "Fiddle Leaf Fig",
       "image": "./images/fiddle-leaf-fig.jpg",
       "price": 55
+    },
+    {
+      "name": "Aloe",
+      "image": "assets/ramen/naruto.jpg",
+      "price": "0.03",
+      "id": 8
     }
   ]
 }
