@@ -1,6 +1,7 @@
 {
   "name": "react-hooks-mock-code-challenge-plantshop",
   "version": "0.1.0",
+  "homepage": "https://berenabiud.github.io/react-hook-cc-plantshop",
   "private": true,
   "dependencies": {
     "json-server": "^0.16.3",
@@ -10,9 +11,12 @@
     "react-scripts": "^5.0.1"
   },
   "scripts": {
+   "predeploy": "npm run build",
+   "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "server": "json-server --watch db.json -p 6001",
-    "test": "jest --bail"
+    "test": "jest --bail",
+    "build":"react-scripts build"
   },
   "eslintConfig": {
     "extends": [
