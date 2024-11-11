@@ -1,7 +1,7 @@
 {
   "name": "react-hooks-mock-code-challenge-plantshop",
   "version": "0.1.0",
-  "homepage": "https://berenabiud.github.io/react-hook-cc-plantshop",
+  "homepage": "https://berenabiud.github.io/react-hooks-cc-plantshop",
   "private": true,
   "dependencies": {
     "json-server": "^0.16.3",
