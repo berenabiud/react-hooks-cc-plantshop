@@ -4,22 +4,23 @@ import PlantPage from "./PlantPage";
 import NewPlantForm from "./NewPlantForm";
 
 function App() {
-  // State to hold the list of plants
   const [plants, setPlants] = useState([]);
 
-
   useEffect(() => {
-    // Initialize plants from local storage if available
     const storedPlants = JSON.parse(localStorage.getItem("plants"));
     if (storedPlants) {
       setPlants(storedPlants);
     } else {
-      // Fetch initial plants data from the server and set it to the state
-      fetch("http://localhost:6001/plants")
-        .then(response => response.json())
+      // Fetch initial plants data from the Render server
+      fetch("https://your-json-server.onrender.com/plants") // Replace with your Render URL
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
         .then(data => setPlants(data))
-        console.log("Fetched Plants: ", )
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error("Fetch error:", error));
     }
   }, []);
 
@@ -29,25 +30,30 @@ function App() {
   }, [plants]);
 
   const onAddPlant = (newPlant) => {
-    
-    fetch("http://localhost:6001/plants", {
+    fetch("https://your-json-server.onrender.com/plants", { // Replace with your Render URL
       method: "POST",
       headers: {
-        "Content-Type": "Application/JSON",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(newPlant),
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Failed to add plant");
+      }
+      return response.json();
+    })
     .then(addedPlant => {
       setPlants(prevPlants => [...prevPlants, addedPlant]);
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => console.error("Error adding plant:", error));
   };
 
   const onDeletePlant = (plantId) => {
     setPlants(prevPlants => prevPlants.filter(plant => plant.id !== plantId));
-    
+    // You might also want to make a DELETE request here to the server.
   };
+
   const onUpdatePrice = (plantId, newPrice) => {
     setPlants(plants.map(plant => {
       if (plant.id === plantId) {
@@ -55,6 +61,7 @@ function App() {
       }
       return plant;
     }));
+    // You might also want to make a PATCH or PUT request here to the server.
   };
 
   return (
