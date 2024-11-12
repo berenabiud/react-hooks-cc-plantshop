@@ -47,6 +47,18 @@
       "image": "assets/ramen/naruto.jpg",
       "price": "0.03",
       "id": 8
+    },
+    {
+      "name": "",
+      "image": "./images/aloe.jpg",
+      "price": "0.02",
+      "id": 9
+    },
+    {
+      "name": "misheveve",
+      "image": "",
+      "price": "0.42",
+      "id": 10
     }
   ]
 }

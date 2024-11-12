@@ -18,6 +18,7 @@ function App() {
       fetch("http://localhost:6001/plants")
         .then(response => response.json())
         .then(data => setPlants(data))
+        console.log("Fetched Plants: ", )
         .catch(error => console.error('Error:', error));
     }
   }, []);
