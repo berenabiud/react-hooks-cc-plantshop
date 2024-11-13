@@ -11,7 +11,6 @@ function App() {
     if (storedPlants) {
       setPlants(storedPlants);
     } else {
-      // Fetch initial plants data from the Render server
       fetch("https://your-json-server.onrender.com/plants") // Replace with your Render URL
         .then(response => {
           if (!response.ok) {
@@ -25,7 +24,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Update local storage whenever plants state changes
     localStorage.setItem("plants", JSON.stringify(plants));
   }, [plants]);
 
@@ -50,18 +48,40 @@ function App() {
   };
 
   const onDeletePlant = (plantId) => {
-    setPlants(prevPlants => prevPlants.filter(plant => plant.id !== plantId));
-    // You might also want to make a DELETE request here to the server.
+    fetch(`https://your-json-server.onrender.com/plants/${plantId}`, { // Replace with your Render URL
+      method: "DELETE",
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Failed to delete plant");
+      }
+      setPlants(prevPlants => prevPlants.filter(plant => plant.id !== plantId));
+    })
+    .catch(error => console.error("Error deleting plant:", error));
   };
 
   const onUpdatePrice = (plantId, newPrice) => {
-    setPlants(plants.map(plant => {
-      if (plant.id === plantId) {
-        return { ...plant, price: newPrice };
+    fetch(`https://https://plantsy-q1eq.onrender.com/plants/${plantId}`, { // Replace with your Render URL
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ price: newPrice }),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Failed to update plant price");
       }
-      return plant;
-    }));
-    // You might also want to make a PATCH or PUT request here to the server.
+      return response.json();
+    })
+    .then(updatedPlant => {
+      setPlants(prevPlants =>
+        prevPlants.map(plant =>
+          plant.id === plantId ? updatedPlant : plant
+        )
+      );
+    })
+    .catch(error => console.error("Error updating plant price:", error));
   };
 
   return (
