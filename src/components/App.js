@@ -11,7 +11,7 @@ function App() {
     if (storedPlants) {
       setPlants(storedPlants);
     } else {
-      fetch("https://your-json-server.onrender.com/plants") // Replace with your Render URL
+      fetch("https://plantsy-q1eq.onrender.com/plants") // Replace with your Render URL
         .then(response => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -28,7 +28,7 @@ function App() {
   }, [plants]);
 
   const onAddPlant = (newPlant) => {
-    fetch("https://your-json-server.onrender.com/plants", { // Replace with your Render URL
+    fetch("https://plantsy-q1eq.onrender.com/plants", { // Replace with your Render URL
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ function App() {
   };
 
   const onDeletePlant = (plantId) => {
-    fetch(`https://your-json-server.onrender.com/plants/${plantId}`, { // Replace with your Render URL
+    fetch(`https://plantsy-q1eq.onrender.com/plants/${plantId}`, { // Replace with your Render URL
       method: "DELETE",
     })
     .then(response => {
