@@ -1,7 +1,7 @@
 {
   "name": "react-hooks-mock-code-challenge-plantshop",
   "version": "0.1.0",
-  "homepage": "https://berenabiud.github.io/react-hooks-cc-plantshop",
+    "homepage": "https://react-hooks-cc-plantshop-necr.onrender.com",
   "private": true,
   "dependencies": {
     "json-server": "^0.16.3",
@@ -11,8 +11,7 @@
     "react-scripts": "^5.0.1"
   },
   "scripts": {"predeploy": "npm run build",
-  "deploy": "gh-pages -d build",
-  "start": "react-scripts start",
+
   "test": "jest --bail",
   "build": "react-scripts build"
   },
