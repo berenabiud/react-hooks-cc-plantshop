@@ -13,7 +13,6 @@
   "scripts": {"predeploy": "npm run build",
   "deploy": "gh-pages -d build",
   "start": "react-scripts start",
-  "server": "json-server --watch db.json --port 6001 --cors \"https://berenabiud.github.io/react-hooks-cc-plantshop/\"",
   "test": "jest --bail",
   "build": "react-scripts build"
   },

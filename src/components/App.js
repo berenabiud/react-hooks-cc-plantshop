@@ -61,7 +61,7 @@ function App() {
   };
 
   const onUpdatePrice = (plantId, newPrice) => {
-    fetch(`https://https://plantsy-q1eq.onrender.com/plants/${plantId}`, { // Replace with your Render URL
+    fetch(`https://plantsy-q1eq.onrender.com/plants/${plantId}`, { // Replace with your Render URL
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
