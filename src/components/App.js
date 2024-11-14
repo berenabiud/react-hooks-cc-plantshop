@@ -6,27 +6,23 @@ import NewPlantForm from "./NewPlantForm";
 function App() {
   const [plants, setPlants] = useState([]);
 
+  // Fetch plants data from the backend when the component mounts
   useEffect(() => {
-    const storedPlants = JSON.parse(localStorage.getItem("plants"));
-    if (storedPlants) {
-      setPlants(storedPlants);
-    } else {
-      fetch("https://plantsy-q1eq.onrender.com/plants") // Replace with your Render URL
-        .then(response => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then(data => setPlants(data))
-        .catch(error => console.error("Fetch error:", error));
-    }
-  }, []);
+    fetch("https://plantsy-q1eq.onrender.com/plants") // Replace with your Render URL
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log("Fetched data:", data);
+        setPlants(data);
+      })
+      .catch(error => console.error("Fetch error:", error));
+  }, []); // Empty dependency array ensures this runs only once when the component mounts
 
-  useEffect(() => {
-    localStorage.setItem("plants", JSON.stringify(plants));
-  }, [plants]);
-
+  // Add new plant to the backend and update the state
   const onAddPlant = (newPlant) => {
     fetch("https://plantsy-q1eq.onrender.com/plants", { // Replace with your Render URL
       method: "POST",
@@ -47,6 +43,7 @@ function App() {
     .catch(error => console.error("Error adding plant:", error));
   };
 
+  // Delete plant from the backend and update the state
   const onDeletePlant = (plantId) => {
     fetch(`https://plantsy-q1eq.onrender.com/plants/${plantId}`, { // Replace with your Render URL
       method: "DELETE",
@@ -60,6 +57,7 @@ function App() {
     .catch(error => console.error("Error deleting plant:", error));
   };
 
+  // Update the price of a plant and update the state
   const onUpdatePrice = (plantId, newPrice) => {
     fetch(`https://plantsy-q1eq.onrender.com/plants/${plantId}`, { // Replace with your Render URL
       method: "PATCH",

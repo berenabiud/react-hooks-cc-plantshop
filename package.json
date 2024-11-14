@@ -11,7 +11,7 @@
     "react-scripts": "^5.0.1"
   },
   "scripts": {"predeploy": "npm run build",
-
+  "start": "react-scripts start",
   "test": "jest --bail",
   "build": "react-scripts build"
   },
